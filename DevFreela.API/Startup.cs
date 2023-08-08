@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.API
 {
@@ -33,7 +34,9 @@ namespace DevFreela.API
 
             services.Configure<OpeningTimeOption>(Configuration.GetSection("OpeningTime"));
 
-            services.AddSingleton<DevFreelaDbContext>();
+            var connectionString = Configuration.GetConnectionString("DevFreelaCs");
+
+            services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IProjectService, ProjectService>();
 

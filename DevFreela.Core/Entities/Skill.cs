@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Entities
 {
-    public class Skill
+    public class Skill : BaseEntity
     {
         public Skill( string description)
         {
             Description = description;
             CreatedAt = DateTime.Now;
         }
-        public int Id { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
     }
