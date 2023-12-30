@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using DevFreela.Application.Commands.CreateProject;
+using DevFreela.Core.Repositories;
+using DevFreela.Infrastructure.Persistence.Repositories;
 
 namespace DevFreela.API
 {
@@ -38,6 +40,10 @@ namespace DevFreela.API
             services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IProjectService, ProjectService>();
+
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
 
 
             services.AddControllers();
