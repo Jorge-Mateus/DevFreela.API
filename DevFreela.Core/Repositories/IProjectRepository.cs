@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Repositories
 {
-    public  interface IProjectRepository
+    public interface IProjectRepository
     {
         Task<List<Project>> GetAllAsync();
         Task<Project> GetDetailsByIdAsync(int id);
