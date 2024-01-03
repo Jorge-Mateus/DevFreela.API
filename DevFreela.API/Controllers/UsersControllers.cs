@@ -4,6 +4,7 @@ using DevFreela.Application.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevFreela.API.Controllers
@@ -37,18 +38,13 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
+            
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        //[HttpPut("{id}")]
-        /* public IActionResult Put(int id, [FromBody] CreateUserModel createUserModel)
-         {
-             return CreatedAtAction(nameof(GetById), new { Id = 1 }, createUserModel);
-         }*/
-
-        //api/user/1/login
+       
         [HttpPut("{id}/login")]
         public IActionResult Login(int id, [FromBody] LoginModel login)
         {
